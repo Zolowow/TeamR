@@ -41,7 +41,7 @@ namespace TeamRapp
             {
                 case 1:
                     {
-                        string path = @"https://s3.zylowski.net/public/input/4.txt?fbclid=IwAR0HLvbGqyUml9I9jkcOD0V5zkTl8P6Mp1Qoss85jLukQI4XT-U2hw4ng0w";
+                        string path = @"https://s3.zylowski.net/public/input/4.txt";
 
                         WebClient client = new WebClient();
                         text = client.DownloadString(path);
