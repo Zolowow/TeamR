@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 
 namespace TeamRapp
@@ -6,6 +7,7 @@ namespace TeamRapp
     class Program
     {
         static string text = null;
+
         static void Main(string[] args)
         {
             while (true)
@@ -39,7 +41,18 @@ namespace TeamRapp
             {
                 case 1:
                     {
-                        //Download file/text
+                        string path = @"https://s3.zylowski.net/public/input/4.txt?fbclid=IwAR0HLvbGqyUml9I9jkcOD0V5zkTl8P6Mp1Qoss85jLukQI4XT-U2hw4ng0w";
+
+                        WebClient client = new WebClient();
+                        text = client.DownloadString(path);
+                        if (text != null)
+                        {
+                            ErrorMessage("The file has been loaded!");
+                        }
+                        else
+                        {
+                            ErrorMessage("Something went wrong, try again.");
+                        }
                     }
                     break;
                 case 2:
@@ -85,6 +98,14 @@ namespace TeamRapp
         {
             Console.Clear();
             Console.WriteLine("You have no file load! Please load the file first.");
+            Thread.Sleep(3000);
+            Console.Clear();
+        }
+
+        private static void ErrorMessage(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
             Thread.Sleep(3000);
             Console.Clear();
         }
