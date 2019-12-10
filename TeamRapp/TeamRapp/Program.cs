@@ -62,7 +62,8 @@ namespace TeamRapp
                     break;
                 case 3:
                     {
-                        //Count number of words
+                        string[] textarray = text.Split(' ');
+                        ErrorMessage($"Number of words {textarray.Length}");
                     }
                     break;
                 case 4:
