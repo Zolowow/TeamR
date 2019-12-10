@@ -39,42 +39,42 @@ namespace TeamRapp
             {
                 case 1:
                     {
-
+                        //Download file/text
                     }
                     break;
                 case 2:
                     {
-
+                        //Count number of letters
                     }
                     break;
                 case 3:
                     {
-
+                        //Count number of words
                     }
                     break;
                 case 4:
                     {
-
+                        //Count number of punctuation marks
                     }
                     break;
                 case 5:
                     {
-
+                        //Count number of sentences
                     }
                     break;
                 case 6:
                     {
-
+                        //Generate raport (A-Z)
                     }
                     break;
                 case 7:
                     {
-
+                        //Save statistics
                     }
                     break;
                 case 8:
                     {
-
+                        //Exit
                     }
                     break;
 
