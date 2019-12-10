@@ -57,7 +57,7 @@ namespace TeamRapp
                     break;
                 case 2:
                     {
-                        //Count number of letters
+                        ErrorMessage($"Number of letters {text.Length}");
                     }
                     break;
                 case 3:
@@ -110,4 +110,5 @@ namespace TeamRapp
             Console.Clear();
         }
     }
+
 }
