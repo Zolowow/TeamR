@@ -95,7 +95,26 @@ namespace TeamRapp
                     break;
                 case 6:
                     {
-                        //Generate raport (A-Z)
+                        int[] c = new int[(int)char.MaxValue];
+                        string letters = string.Empty;
+
+                        foreach (char t in text)
+                        {
+                            c[(int)t]++;
+                        }
+
+                        for (int i = 0; i < (int)char.MaxValue; i++)
+                        {
+                            if (c[i] > 0 && char.IsLetterOrDigit((char)i))
+                            {
+                                letters += $"{(char)i}: {c[i]} \n";
+                            }
+                        }
+
+                        Console.Clear();
+                        Console.WriteLine(letters);
+                        Console.WriteLine("Press any button to continue.");
+                        Console.ReadKey();
                     }
                     break;
                 case 7:
