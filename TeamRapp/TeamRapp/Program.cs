@@ -68,7 +68,16 @@ namespace TeamRapp
                     break;
                 case 4:
                     {
-                        //Count number of punctuation marks
+                        int countPuncMarks = 0;
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            if (text[i] == '!' || text[i] == ',' || text[i] == ';' || text[i] == '.' || text[i] == '?' || text[i] == '-' ||
+                                       text[i] == '\'' || text[i] == '\"' || text[i] == ':')
+                            {
+                                countPuncMarks++;
+                            }
+                        }                        
+                        ErrorMessage($"Number of punctuation marks {countPuncMarks}");
                     }
                     break;
                 case 5:
