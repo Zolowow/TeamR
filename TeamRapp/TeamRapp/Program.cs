@@ -82,7 +82,15 @@ namespace TeamRapp
                     break;
                 case 5:
                     {
-                        //Count number of sentences
+                        int countSentences = 0;
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            if (text[i] == '.')
+                            {
+                                countSentences++;
+                            }
+                        }                        
+                        ErrorMessage($"Number of sentences {countSentences}");
                     }
                     break;
                 case 6:
