@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Threading;
 
@@ -27,6 +28,12 @@ namespace TeamRapp
                 Console.WriteLine("8 - Exit");
 
                 int userInput = Convert.ToInt32(Console.ReadLine());
+
+                if(userInput == 8)
+                {
+                    MenuSelection(userInput);
+                }
+
                 if (text == null && userInput != 1)
                 {
                     ErrorMessage();
@@ -46,17 +53,24 @@ namespace TeamRapp
             {
                 case 1:
                     {
-                        string path = @"https://s3.zylowski.net/public/input/4.txt";
-
-                        WebClient client = new WebClient();
-                        text = client.DownloadString(path);
-                        if (text != null)
+                        if (text == null)
                         {
-                            ErrorMessage("The file has been loaded!");
+                            string path = @"https://s3.zylowski.net/public/input/4.txt";
+
+                            WebClient client = new WebClient();
+                            text = client.DownloadString(path);
+                            if (text != null)
+                            {
+                                ErrorMessage("The file has been loaded!");
+                            }
+                            else
+                            {
+                                ErrorMessage("Something went wrong, try again.");
+                            }
                         }
                         else
                         {
-                            ErrorMessage("Something went wrong, try again.");
+                            ErrorMessage("You have already loaded the file!");
                         }
                     }
                     break;
@@ -132,7 +146,7 @@ namespace TeamRapp
                     {
                         ErrorMessage("If you have not choose any other options the numbers can be 0");
 
-                        using (StreamWriter writetext = new StreamWriter(@"F:\Projekty\Analizator tekstów\statystyki.txt", false))
+                        using (StreamWriter writetext = new StreamWriter(@"statystyki.txt", false))
                         {
                             writetext.WriteLine($"Number of letters = {numberOfLetters}, \n" +
                                 $"Number of words = {numberOfWords}, \n" +
@@ -145,7 +159,14 @@ namespace TeamRapp
                     break;
                 case 8:
                     {
-                        //Exit
+                        File.Delete(@"statystyki.txt");
+                        ErrorMessage("BYE BYE! Have a nice day!");
+                        Environment.Exit(0);
+                    }
+                    break;
+                default:
+                    {
+                        ErrorMessage("Wrong number, choose another number");
                     }
                     break;
 
