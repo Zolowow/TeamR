@@ -8,6 +8,11 @@ namespace TeamRapp
     {
         static string text = null;
 
+        static int numberOfLetters = 0;
+        static int numberOfWords = 0;
+        static int punctuationMarks = 0;
+        static int numberOfSentences = 0;
+
         static void Main(string[] args)
         {
             while (true)
@@ -57,12 +62,16 @@ namespace TeamRapp
                     break;
                 case 2:
                     {
+                        numberOfLetters = text.Length;
                         ErrorMessage($"Number of letters {text.Length}");
+
+
                     }
                     break;
                 case 3:
                     {
                         string[] textarray = text.Split(' ');
+                        numberOfWords = textarray.Length;
                         ErrorMessage($"Number of words {textarray.Length}");
                     }
                     break;
@@ -76,7 +85,8 @@ namespace TeamRapp
                             {
                                 countPuncMarks++;
                             }
-                        }                        
+                        }
+                        punctuationMarks = countPuncMarks;
                         ErrorMessage($"Number of punctuation marks {countPuncMarks}");
                     }
                     break;
@@ -89,7 +99,8 @@ namespace TeamRapp
                             {
                                 countSentences++;
                             }
-                        }                        
+                        }
+                        numberOfSentences = countSentences;
                         ErrorMessage($"Number of sentences {countSentences}");
                     }
                     break;
@@ -119,7 +130,17 @@ namespace TeamRapp
                     break;
                 case 7:
                     {
-                        //Save statistics
+                        ErrorMessage("If you have not choose any other options the numbers can be 0");
+
+                        using (StreamWriter writetext = new StreamWriter(@"F:\Projekty\Analizator tekstów\statystyki.txt", false))
+                        {
+                            writetext.WriteLine($"Number of letters = {numberOfLetters}, \n" +
+                                $"Number of words = {numberOfWords}, \n" +
+                                $"Number of punctuation marks = {punctuationMarks}, \n" +
+                                $"Number of sentences = {numberOfSentences}");
+                        }
+
+                        ErrorMessage("File successfully created!");
                     }
                     break;
                 case 8:
