@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Threading;
 
@@ -7,6 +8,11 @@ namespace TeamRapp
     class Program
     {
         static string text = null;
+
+        static int numberOfLetters = 0;
+        static int numberOfWords = 0;
+        static int punctuationMarks = 0;
+        static int numberOfSentences = 0;
 
         static void Main(string[] args)
         {
@@ -22,6 +28,12 @@ namespace TeamRapp
                 Console.WriteLine("8 - Exit");
 
                 int userInput = Convert.ToInt32(Console.ReadLine());
+
+                if(userInput == 8)
+                {
+                    MenuSelection(userInput);
+                }
+
                 if (text == null && userInput != 1)
                 {
                     ErrorMessage();
@@ -63,7 +75,6 @@ namespace TeamRapp
                             {
                                 ErrorMessage("The file has been loaded!");
                             }
-
                         }
                         else if (answer == "N" || answer == "n")
                         {
@@ -87,12 +98,16 @@ namespace TeamRapp
                     break;
                 case 2:
                     {
+                        numberOfLetters = text.Length;
                         ErrorMessage($"Number of letters {text.Length}");
+
+
                     }
                     break;
                 case 3:
                     {
                         string[] textarray = text.Split(' ');
+                        numberOfWords = textarray.Length;
                         ErrorMessage($"Number of words {textarray.Length}");
                     }
                     break;
@@ -106,7 +121,8 @@ namespace TeamRapp
                             {
                                 countPuncMarks++;
                             }
-                        }                        
+                        }
+                        punctuationMarks = countPuncMarks;
                         ErrorMessage($"Number of punctuation marks {countPuncMarks}");
                     }
                     break;
@@ -119,7 +135,8 @@ namespace TeamRapp
                             {
                                 countSentences++;
                             }
-                        }                        
+                        }
+                        numberOfSentences = countSentences;
                         ErrorMessage($"Number of sentences {countSentences}");
                     }
                     break;
@@ -149,12 +166,29 @@ namespace TeamRapp
                     break;
                 case 7:
                     {
-                        //Save statistics
+                        ErrorMessage("If you have not choose any other options the numbers can be 0");
+
+                        using (StreamWriter writetext = new StreamWriter(@"statystyki.txt", false))
+                        {
+                            writetext.WriteLine($"Number of letters = {numberOfLetters}, \n" +
+                                $"Number of words = {numberOfWords}, \n" +
+                                $"Number of punctuation marks = {punctuationMarks}, \n" +
+                                $"Number of sentences = {numberOfSentences}");
+                        }
+
+                        ErrorMessage("File successfully created!");
                     }
                     break;
                 case 8:
                     {
-                        //Exit
+                        File.Delete(@"statystyki.txt");
+                        ErrorMessage("BYE BYE! Have a nice day!");
+                        Environment.Exit(0);
+                    }
+                    break;
+                default:
+                    {
+                        ErrorMessage("Wrong number, choose another number");
                     }
                     break;
 
