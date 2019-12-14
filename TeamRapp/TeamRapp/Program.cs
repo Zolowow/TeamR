@@ -98,10 +98,26 @@ namespace TeamRapp
                     break;
                 case 2:
                     {
-                        numberOfLetters = text.Length;
-                        ErrorMessage($"Number of letters {text.Length}");
+                        int vowels = 0;
+                        int consonant = 0;
 
+                        for (int i = 0; i < text.Length; i++)
+                        {
+                            if (text[i] == 'a' || text[i] == 'e' || text[i] == 'i' || text[i] == 'o' || text[i] == 'u')
+                            {
+                                vowels++;
+                            }
+                            else if (char.IsWhiteSpace(text[i]))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                consonant++;
+                            }
+                        }
 
+                        ErrorMessage($"Number of vowels {vowels} \nNumber of consonant {consonant}");
                     }
                     break;
                 case 3:
