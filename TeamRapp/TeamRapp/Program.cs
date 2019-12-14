@@ -41,17 +41,47 @@ namespace TeamRapp
             {
                 case 1:
                     {
-                        string path = @"https://s3.zylowski.net/public/input/4.txt";
+                        Console.WriteLine("Wybierz plik wejściowy:");
+                        Console.WriteLine("Pobrać plik z internetu? [T/N]");
+                        string answer = Console.ReadLine();
+                        if (answer == "T" || answer == "t")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Podaj adres pliku:");
+                            string path = Console.ReadLine();
+                            WebClient client = new WebClient();
+                            try
+                            {
+                                text = client.DownloadString(path.Normalize());
+                            }
+                            catch
+                            {
+                                ErrorMessage("Something went wrong, try again.");
+                            }
 
-                        WebClient client = new WebClient();
-                        text = client.DownloadString(path);
-                        if (text != null)
-                        {
-                            ErrorMessage("The file has been loaded!");
+                            if (text != null)
+                            {
+                                ErrorMessage("The file has been loaded!");
+                            }
+
                         }
-                        else
+                        else if (answer == "N" || answer == "n")
                         {
-                            ErrorMessage("Something went wrong, try again.");
+                            Console.Clear();
+                            Console.WriteLine("Podaj nazwę pliku:");
+                            string file = Console.ReadLine();
+                            using (StreamReader sr = new StreamReader(file))
+                            {
+                                text = sr.ReadToEnd();
+                            }
+                            if (text != null)
+                            {
+                                ErrorMessage("The file has been loaded!");
+                            }
+                            else
+                            {
+                                ErrorMessage("Something went wrong, try again.");
+                            }
                         }
                     }
                     break;
