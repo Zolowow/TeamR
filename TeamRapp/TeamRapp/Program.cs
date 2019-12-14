@@ -139,8 +139,7 @@ namespace TeamRapp
                         int countPuncMarks = 0;
                         for (int i = 0; i < text.Length; i++)
                         {
-                            if (text[i] == '!' || text[i] == ',' || text[i] == ';' || text[i] == '.' || text[i] == '?' || text[i] == '-' ||
-                                       text[i] == '\'' || text[i] == '\"' || text[i] == ':')
+                            if (text[i] == '.' || text[i] == '?')
                             {
                                 countPuncMarks++;
                             }
