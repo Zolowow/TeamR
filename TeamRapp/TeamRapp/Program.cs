@@ -10,6 +10,8 @@ namespace TeamRapp
         static string text = null;
 
         static int numberOfLetters = 0;
+        static int vowels = 0;
+        static int consonant = 0;
         static int numberOfWords = 0;
         static int punctuationMarks = 0;
         static int numberOfSentences = 0;
@@ -98,8 +100,8 @@ namespace TeamRapp
                     break;
                 case 2:
                     {
-                        int vowels = 0;
-                        int consonant = 0;
+                        vowels = 0;
+                        consonant = 0;
 
                         for (int i = 0; i < text.Length; i++)
                         {
@@ -191,8 +193,9 @@ namespace TeamRapp
                         ErrorMessage("If you have not choose any other options the numbers can be 0");
 
                         using (StreamWriter writetext = new StreamWriter(@"statystyki.txt", false))
-                        {
-                            writetext.WriteLine($"Number of letters = {numberOfLetters}, \n" +
+                        {                        
+                            writetext.WriteLine($"Number of vowels = {vowels}, \n" +
+                                $"Number of consonant = {consonant}, \n" +
                                 $"Number of words = {numberOfWords}, \n" +
                                 $"Number of punctuation marks = {punctuationMarks}, \n" +
                                 $"Number of sentences = {numberOfSentences}");
