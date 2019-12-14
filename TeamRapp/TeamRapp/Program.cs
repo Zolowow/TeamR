@@ -53,12 +53,38 @@ namespace TeamRapp
             {
                 case 1:
                     {
-                        if (text == null)
+                        Console.WriteLine("Wybierz plik wejściowy:");
+                        Console.WriteLine("Pobrać plik z internetu? [T/N]");
+                        string answer = Console.ReadLine();
+                        if (answer == "T" || answer == "t")
                         {
-                            string path = @"https://s3.zylowski.net/public/input/4.txt";
-
+                            Console.Clear();
+                            Console.WriteLine("Podaj adres pliku:");
+                            string path = Console.ReadLine();
                             WebClient client = new WebClient();
-                            text = client.DownloadString(path);
+                            try
+                            {
+                                text = client.DownloadString(path.Normalize());
+                            }
+                            catch
+                            {
+                                ErrorMessage("Something went wrong, try again.");
+                            }
+
+                            if (text != null)
+                            {
+                                ErrorMessage("The file has been loaded!");
+                            }
+                        }
+                        else if (answer == "N" || answer == "n")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Podaj nazwę pliku:");
+                            string file = Console.ReadLine();
+                            using (StreamReader sr = new StreamReader(file))
+                            {
+                                text = sr.ReadToEnd();
+                            }
                             if (text != null)
                             {
                                 ErrorMessage("The file has been loaded!");
@@ -67,10 +93,6 @@ namespace TeamRapp
                             {
                                 ErrorMessage("Something went wrong, try again.");
                             }
-                        }
-                        else
-                        {
-                            ErrorMessage("You have already loaded the file!");
                         }
                     }
                     break;
