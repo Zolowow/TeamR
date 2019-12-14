@@ -131,7 +131,7 @@ namespace TeamRapp
                         int countSentences = 0;
                         for (int i = 0; i < text.Length; i++)
                         {
-                            if (text[i] == '.')
+                            if (text[i] == '.' || text[i] == '?')
                             {
                                 countSentences++;
                             }
