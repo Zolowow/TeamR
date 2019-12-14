@@ -123,8 +123,15 @@ namespace TeamRapp
                 case 3:
                     {
                         string[] textarray = text.Split(' ');
-                        numberOfWords = textarray.Length;
-                        ErrorMessage($"Number of words {textarray.Length}");
+                        foreach (string item in textarray)
+                        {
+                            if (item.Length != 1)
+                            {
+                                numberOfWords++;
+                            }
+                        }
+
+                        ErrorMessage($"Number of words {numberOfWords}");
                     }
                     break;
                 case 4:
